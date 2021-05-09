@@ -1,0 +1,28 @@
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check for vaccinations</h2>
+
+<div class="row justify-content-center">
+    
+    <div class="text-center">
+        <br />
+        <br />
+        <br />
+        <input id="vaccinationID" [(ngModel)]="vaccinationID" placeholder="vaccinationID">
+        <button (click)="checkForVaccination(vaccinationID)">Check for Vaccinations</button>
+    </div>
+
+    <div class="text-center justify-content-center" *ngIf="checkedForVaccination">
+        <br />
+        <p class="text-left">{{name}} {{surname}} Previous vaccinations: </p>
+        <hr>
+        <table class="table">
+            <tr *ngFor="let vaccine of vaccines; let i = index">
+             <td>{{vaccine}}</td>
+             <td>{{dates[i] | date}}</td>
+            </tr>
+        </table>
+        <hr />
+        <br />
+    </div>
+
+
+</div>

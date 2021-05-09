@@ -20,6 +20,7 @@ const getVacc = (req, res) => {
         // console.log(hex.split(""));
         var j;
         for(j = 0; j < hex.length; j++) if(hex[j] != 0) break;
+        j += 4;
         var hexData = hex.slice(j).join("");
         // console.log(hexData);
         try {
@@ -49,7 +50,6 @@ const addVacc = (req, res) => {
   const new_vaccine = req.body.vaccine;
   const new_date = req.body.date;
   const txid = req.body.tx_prev;
-  const email = req.body.email;
   if(!name || !surname || !emso || !new_vaccine || !new_date) return res.status(400).json({"error": "Invalid data"});
 
   const usr = {
@@ -70,6 +70,7 @@ const addVacc = (req, res) => {
           // console.log(hex.split(""));
           var j;
           for(j = 0; j < hex.length; j++) if(hex[j] != 0) break;
+          j += 4;
           var hexData = hex.slice(j).join("");
           // console.log(hexData);
           try {
@@ -114,7 +115,7 @@ const getStat = async (req, res) => {
     var block = await client.getBlock(bestHash);
     var ctime = block.mediantime;
     while(ctime >= timestamp) {
-      // console.log(block.hash);
+      // console.log(ctime);
       const txs = block.tx;
       for(var tx = 0; tx < txs.length; tx++) {
         try {
@@ -128,6 +129,7 @@ const getStat = async (req, res) => {
               // console.log(hex.split(""));
               var j;
               for(j = 0; j < hex.length; j++) if(hex[j] != 0) break;
+              j += 4;
               var hexData = hex.slice(j).join("");
               // console.log(hexData);
               try {
@@ -168,7 +170,7 @@ const supply = (req, res) => {
 
   const obj = {};
   obj[address] = parseInt(quantity);
-  obj["data"] = batch;
+  obj["data"] = a2hex(batch);
   client.createRawTransaction([], obj).then((rawTxStr) => {
     client.fundRawTransaction(rawTxStr).then((fundedTxObj) => {
       client.signRawTransaction(fundedTxObj.hex).then((signedTxObj) => {
@@ -249,6 +251,5 @@ module.exports = {
   getVacc,
   addVacc,
   getStat,
-
   supply
 }

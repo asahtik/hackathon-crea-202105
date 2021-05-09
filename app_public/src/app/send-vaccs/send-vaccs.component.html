@@ -1,0 +1,42 @@
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Supply</h2>
+
+<div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="row justify-content-center col-auto text-center">
+        <table class="table table-responsive">
+            <tr>
+                <td>
+                    <p>Address for supply: </p>
+                    <input id="address" [(ngModel)]="address" placeholder="address">
+                </td>
+                <td>
+                    <p>Quantity of vaccines: </p>
+                    <input id="quantity" [(ngModel)]="quantity" placeholder="quantity">
+                </td>
+                <td>
+                    <p>BatchID value: </p>
+                    <input id="batchID" [(ngModel)]="batchID" placeholder="batchID"> 
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+    <div class="text-center">
+        <button (click)="supply()">Supply</button>
+
+        <div *ngIf="supplied">
+            <br/>
+            <p>Supply successful.</p>
+        </div>
+    </div>
+ 
+
+    <br/>
+    <br/>
+    
+
+   
+
+</div>

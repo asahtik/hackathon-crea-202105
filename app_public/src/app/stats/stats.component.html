@@ -1,0 +1,38 @@
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Statistics</h2>
+
+<div>
+    <div class="text-center">
+        <br />
+        <p>Show statistics from: </p>
+        <input id="date" [(ngModel)]="date" placeholder="YYYY/MM/DD HH:MM:SS">
+        &nbsp;
+        <button (click)="getStatistics()">ShowStatistics</button>
+
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="text-center" *ngIf="return_data" >
+        <p>Total Vaccines: {{total_vaccines}}</p>
+        <hr/>
+        <div class="justify-content-center">
+            <table class="table">
+                <tr *ngFor="let company of return_data">
+                 <td>{{company[0]}}: {{company[1]}}</td>
+                </tr>
+            </table>
+        </div>
+        <hr/>
+        <br/>
+        <br/>
+        <google-chart
+    	    [title]="chartTitle"
+            [type]="typ"
+            [data]="return_data"
+            [dynamicResize]="true">
+        </google-chart>
+    </div>
+
+</div>
