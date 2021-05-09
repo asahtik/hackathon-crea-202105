@@ -1,0 +1,55 @@
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add vaccinations</h2>
+<div class="row justify-content-center">
+    <br />
+    <br />
+    <br />
+    <div class="col-auto">
+        <br />
+        <br />
+        <table class="table table-responsive">
+            <tr>
+                <td><button (click)="enterVaccID()">Enter Vaccination ID</button></td>
+                <td><b>or</b></td>
+                <td><button (click)="enterNewUser()">Enter New User</button></td>
+            </tr>
+        </table>
+        <br />
+        <br />
+    </div>
+    <div class="text-center" *ngIf="clickedOnEnterVaccID">
+        <input id="vaccinationID" [(ngModel)]="vaccinationID" placeholder="vaccinationID">
+        <button (click)="checkForVaccination(vaccinationID)">Check for Vaccinations</button>
+        <br />
+    </div>
+
+    <div class="text-center" *ngIf="clickedOnAddNewUser">
+        <input id="name" [(ngModel)]="name" placeholder="name">
+        <input id="surname" [(ngModel)]="surname" placeholder="surname">
+        <input id="emso" [(ngModel)]="emso" placeholder="emso"> 
+        <button (click)="confirmNewUser()">Confirm</button>
+        <br />
+        <br />
+    </div>
+    
+    <div class="text-center" *ngIf="checkedForVaccination">
+        <br />
+        <p class="text-left">{{name}} {{surname}} Previous vaccinations: </p>
+        <table>
+            <tr *ngFor="let vaccine of vaccines">
+             <td>{{vaccine}}</td>
+            </tr>
+        </table>
+        <br />
+        <br />
+    </div>
+
+    <div class="text-center" *ngIf="addNewVaccination">
+
+        <input id="vaccineName" [(ngModel)]="vaccineName" placeholder="vaccineName">
+            
+        <button (click)="addVaccination()">Add New Vaccination</button>
+
+        <p *ngIf="vaccineAdded">Vaccination added successfully.</p>
+    </div>
+
+</div>
