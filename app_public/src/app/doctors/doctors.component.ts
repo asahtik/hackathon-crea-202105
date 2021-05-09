@@ -24,7 +24,7 @@ export class DoctorsComponent implements OnInit {
   clickedOnAddNewUser: boolean = false;
   addNewVaccination: boolean = false;
   vaccines: string[] = [];
-  dates: Date[] = [];
+  dates: number[] = [];
   name: string = "";
   surname: string = "";
   emso: string = "";
@@ -51,7 +51,8 @@ export class DoctorsComponent implements OnInit {
   checkForVaccination(vaccinationID: string):void {
 
     this.doctorService.checkForVaccination(vaccinationID)
-      .subscribe(data => {
+      .subscribe(d => {
+        var data = d.data;
         console.log(data);
         this.vaccines = data.vaccines;
         this.dates = data.dates;
@@ -67,13 +68,13 @@ export class DoctorsComponent implements OnInit {
 
   addVaccination(): void {
 
-    this.newVaccination = {name: this.name, surname: this.surname, emso: this.emso, vaccine: this.vaccineName, tx_prev: this.vaccinationID}
+    this.newVaccination = {name: this.name, surname: this.surname, emso: this.emso, vaccine: this.vaccineName, tx_prev: this.vaccinationID, date: Math.round(Date.now()/1000)}
     
     this.doctorService.addVaccination(this.newVaccination)
     .subscribe(vaccination => {
       console.log(vaccination);
       this.vaccineAdded = true;
-
+      alert(`Please store this Vaccination ID: ${vaccination.data}`);
     });
 
     

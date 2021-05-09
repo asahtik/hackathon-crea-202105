@@ -6,6 +6,7 @@ import { SendVaccsComponent } from './send-vaccs/send-vaccs.component';
 import { StatsComponent } from './stats/stats.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'doctors' },
   { path: 'doctors', component: DoctorsComponent },
   { path: 'police', component: PoliceComponent },
   { path: 'sendVaccs', component: SendVaccsComponent },

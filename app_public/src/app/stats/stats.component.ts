@@ -29,7 +29,7 @@ export class StatsComponent implements OnInit {
     this.doctorService.getStatistics(timestamp)
     .subscribe(data => {
       console.log(data);
-      this.return_data = data
+      this.return_data = data.data
 
       this.showData();
 

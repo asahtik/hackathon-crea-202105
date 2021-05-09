@@ -17,7 +17,7 @@ export class DoctorService {
 
   addVaccination(vaccination: Vaccination): Observable<any> {
 
-    return this.http.post<Data>(this.doctorsUrl + "add", vaccination)
+    return this.http.post<Vaccination>(this.doctorsUrl + "add", vaccination)
       .pipe(
         catchError(this.handleError<any>('addVaccination'))
       );
@@ -25,23 +25,23 @@ export class DoctorService {
 
 
   getStatistics(timestamp: string): Observable<any> {
-    return this.http.get<Data>(this.doctorsUrl + "/stats/"+timestamp)
+    return this.http.get<any>(this.doctorsUrl + "/stats/"+timestamp)
       .pipe(
-        catchError(this.handleError<Data>('checkForVaccination',[]))
+        catchError(this.handleError<any>('checkForVaccination',[]))
       );
   }
 
   checkForVaccination(vaccinationID: string): Observable<any> {
-    return this.http.get<Data>(this.doctorsUrl + "get/"+vaccinationID)
+    return this.http.get<any>(this.doctorsUrl + "get/" + vaccinationID)
       .pipe(
-        catchError(this.handleError<Data>('checkForVaccination',[]))
+        catchError(this.handleError<any>('checkForVaccination',[]))
       );
   }
-//todotodotodotodotodo
+
   supply(address: string, quantity: number, batchID: string): Observable<any> {
-    return this.http.post<Data>(this.doctorsUrl + "/supply/", {})
+    return this.http.post<any>(this.doctorsUrl + "/supply/", {address: address, quantity: quantity, batch: batchID})
       .pipe(
-        catchError(this.handleError<Data>('checkForVaccination',[]))
+        catchError(this.handleError<any>('checkForVaccination',[]))
       );
   }
 

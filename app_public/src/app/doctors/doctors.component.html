@@ -31,15 +31,17 @@
         <br />
     </div>
     
-    <div class="text-center" *ngIf="checkedForVaccination">
+    <div class="text-center justify-content-center" *ngIf="checkedForVaccination">
         <br />
         <p class="text-left">{{name}} {{surname}} Previous vaccinations: </p>
-        <table>
-            <tr *ngFor="let vaccine of vaccines">
+        <hr>
+        <table class="table">
+            <tr *ngFor="let vaccine of vaccines; let i = index">
              <td>{{vaccine}}</td>
+             <td>{{dates[i] | date}}</td>
             </tr>
         </table>
-        <br />
+        <hr />
         <br />
     </div>
 

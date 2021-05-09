@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./app_api/routes/index');
-var usersRouter = require('./app_api/routes/users');
 
 var app = express();
 
@@ -13,10 +12,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'app_public', 'build')));
+// const cors = require("cors");
+// app.use(cors());
+// app.options("*", cors());
 
 app.use('/api', indexRouter);
-app.use('/users', usersRouter);
-
+app.get(/(\/)|(\/doctors)|(\/police)|(\/sendVaccs)|(\/stats)/, (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'app_public', 'build', 'index.html'));
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

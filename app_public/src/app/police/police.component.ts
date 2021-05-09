@@ -24,7 +24,7 @@ export class PoliceComponent implements OnInit {
   clickedOnAddNewUser: boolean = false;
   addNewVaccination: boolean = false;
   vaccines: string[] = [];
-  dates: Date[] = [];
+  dates: number[] = [];
   name: string = "";
   surname: string = "";
   emso: string = "";
@@ -35,7 +35,8 @@ export class PoliceComponent implements OnInit {
   checkForVaccination(vaccinationID: string):void {
 
     this.doctorService.checkForVaccination(vaccinationID)
-      .subscribe(data => {
+      .subscribe(d => {
+        var data = d.data;
         console.log(data);
         this.vaccines = data.vaccines;
         this.dates = data.dates;

@@ -3,6 +3,6 @@ export interface Vaccination {
     surname?: string;
     emso?: string;
     vaccine?: string;
-    date?: Date;
+    date?: number;
     tx_prev?: string;
 }

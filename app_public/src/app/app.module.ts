@@ -9,6 +9,7 @@ import { PoliceComponent } from './police/police.component';
 import { SendVaccsComponent } from './send-vaccs/send-vaccs.component';
 import { StatsComponent } from './stats/stats.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { DatePipe } from './date.pipe';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     DoctorsComponent,
     PoliceComponent,
     SendVaccsComponent,
-    StatsComponent
-    
+    StatsComponent,
+    DatePipe
   ],
   imports: [
     BrowserModule,

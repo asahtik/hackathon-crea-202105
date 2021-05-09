@@ -20,6 +20,7 @@ const getVacc = (req, res) => {
         // console.log(hex.split(""));
         var j;
         for(j = 0; j < hex.length; j++) if(hex[j] != 0) break;
+        j += 4;
         var hexData = hex.slice(j).join("");
         // console.log(hexData);
         try {
@@ -69,6 +70,7 @@ const addVacc = (req, res) => {
           // console.log(hex.split(""));
           var j;
           for(j = 0; j < hex.length; j++) if(hex[j] != 0) break;
+          j += 4;
           var hexData = hex.slice(j).join("");
           // console.log(hexData);
           try {
@@ -127,6 +129,7 @@ const getStat = async (req, res) => {
               // console.log(hex.split(""));
               var j;
               for(j = 0; j < hex.length; j++) if(hex[j] != 0) break;
+              j += 4;
               var hexData = hex.slice(j).join("");
               // console.log(hexData);
               try {
@@ -167,7 +170,7 @@ const supply = (req, res) => {
 
   const obj = {};
   obj[address] = parseInt(quantity);
-  obj["data"] = batch;
+  obj["data"] = a2hex(batch);
   client.createRawTransaction([], obj).then((rawTxStr) => {
     client.fundRawTransaction(rawTxStr).then((fundedTxObj) => {
       client.signRawTransaction(fundedTxObj.hex).then((signedTxObj) => {
@@ -248,6 +251,5 @@ module.exports = {
   getVacc,
   addVacc,
   getStat,
-
   supply
 }
