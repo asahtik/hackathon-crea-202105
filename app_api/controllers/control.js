@@ -49,7 +49,6 @@ const addVacc = (req, res) => {
   const new_vaccine = req.body.vaccine;
   const new_date = req.body.date;
   const txid = req.body.tx_prev;
-  const email = req.body.email;
   if(!name || !surname || !emso || !new_vaccine || !new_date) return res.status(400).json({"error": "Invalid data"});
 
   const usr = {
@@ -114,7 +113,7 @@ const getStat = async (req, res) => {
     var block = await client.getBlock(bestHash);
     var ctime = block.mediantime;
     while(ctime >= timestamp) {
-      // console.log(block.hash);
+      // console.log(ctime);
       const txs = block.tx;
       for(var tx = 0; tx < txs.length; tx++) {
         try {
