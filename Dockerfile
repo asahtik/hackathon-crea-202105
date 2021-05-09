@@ -7,7 +7,7 @@ ENV BITCOIN_OUTADDRESS=myMLjcmLTq1QSqJn7Mbeo65HER3HyJxaZm
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm install
+RUN apk update && apk add python3 && apk add make && apk add bash && npm install
 
 COPY . .
 
