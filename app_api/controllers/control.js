@@ -197,8 +197,9 @@ const supply = (req, res) => {
 function addVaccination(usr, res) {
   const obj = {};
   obj[conf.getOutAddress()] = 1.0000;
-  const data = JSON.stringify(usr);
-  obj["data"] = a2hex(data);
+  var data = a2hex(JSON.stringify(usr));
+  if(data.length %2 != 0) data = '0' + data;
+  obj["data"] = data;
 
   client.createRawTransaction([], obj).then((rawTxStr) => {
     client.fundRawTransaction(rawTxStr).then((fundedTxObj) => {
